@@ -1,0 +1,97 @@
+<!DOPCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Api</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+        theme: {
+            screens: {
+                'sm': '750px',
+                // => @media (min-width: 640px) { ... }
+
+                'md': '900px',
+                // => @media (min-width: 768px) { ... }
+
+                'lg': '1100px',
+                // => @media (min-width: 1024px) { ... }
+
+                'xl': '1300px',
+                // => @media (min-width: 1280px) { ... }
+
+                '2xl': '1536px',
+                // => @media (min-width: 1536px) { ... }
+            },
+            extend: {
+                screens: {
+                    'tablet':{"min": "550px", "max": "750px"},
+                    'mini':{"min": "450px", "max": "550px"},
+                    'mobile':{"min": "360px", "max": "450px"},
+                    'micro':{"min": "220px", "max": "360px"},
+                    'customLaptop': {'min': '900px', 'max': '1000px'},
+                    'customLaptopBig': {'min': '1000px', 'max': '1100'}
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body>
+    <header>
+        <div class="mobileSearchBar hidden top-0 left-0 w-full justify-center items-center mini:px-6 mobile:px-6 micro:px-5 py-5 mini:py-4 mobile:py-4 micro:py-3 bg-white gap-x-3">
+            <div class="flex justify-center items-center gap-x-3 rounded-[50px] border-[1px] border-solid border-black border-opacity-20 px-2 py-1">
+                <div class="w-[40px] h-[40px] rounded-full bg-gray-300 flex justify-center items-center"><i class="ri-search-line"></i></div>
+                <input type="text" placeholder="Search any News" class="border-none outline-none w-[200px] micro:w-[150px] bg-transparent">
+            </div>
+            <p class="cancelSearch cursor-pointer">Cancel</p>
+        </div>
+        <nav class="px-16 mini:px-6 mobile:px-6 micro:px-5 py-6 mini:py-4 mobile:py-5 micro:py-4 flex justify-between items-center">
+            <div class="flex justify-between items-center gap-x-[15px] customLaptop:gap-x-[25px] sm:gap-x-[25px] tablet:gap-x-[25px] mini:gap-x-[20px]">
+                <i class="ri-menu-2-line customLaptopBig:hidden lg:hidden customLaptop:block sm:block tablet:block mini:block mobile:block micro:block text-[20px]"></i>
+                <h1 class="text-red-600 text-3xl font-semibold">Buletin</h1>
+                <div class="lg:flex xl:flex customLaptopBig:flex justify-between items-center self-end gap-x-[30px] pl-[15px] border-l-solid border-l-[1px] border-l-black customLaptop:hidden sm:hidden tablet:hidden mini:hidden mobile:hidden micro:hidden">
+                    <h4 class="cursor-pointer opacity-70 hover:opacity-100">Stories</h4>
+                    <h4 class="cursor-pointer opacity-70 hover:opacity-100">Be a Creator</h4>
+                    <h4 class="cursor-pointer opacity-70 hover:opacity-100">Community</h4>
+                </div>
+            </div>
+            <div class="translate-y-[10px] tablet:translate-y-[0px] mini:translate-y-[0px] mobile:translate-y-[0px] micro:translate-y-[0px] flex justify-between items-center gap-x-3">
+                <div class="border-[1px] border-black border-solid tablet:hidden mini:hidden mobile:hidden micro:hidden">
+                    <input type="text" id="searchBar" class="pl-2 w-[225px] border-none outline-none" placeholder="Search anything ...">
+                    <button id="searchbtn" class="w-10 h-10 bg-blue-400 hover:bg-blue-500 text-white"><i class="ri-search-line"></i></button>
+                </div>
+                <i class="searchIcon ri-search-line hidden tablet:block mini:block mobile:block micro:block text-[20px] cursor-pointer"></i>
+                <div class="flex justify-between items-center mobile:hidden micro:hidden">
+                    <button class="flex justify-center items-center w-24 h-11 rounded-3xl bg-gray-200 hover:bg-gray-300">Sign Up</button>
+                </div>
+                <i class="ri-login-box-line hidden mobile:block micro:block text-[22px]"></i>
+            </div>
+        </nav>
+    </header>
+    <div class="website">
+        <main>
+            <div class="bg-[#eee] py-8 flex justify-center items-center flex-col mt-5 sm:mx-16 tablet:mx-0 mini:mx-0 mobile:mx-0 micro:mx-0">
+                <h3 class=" pb-[5px] w-full text-center">WELCOME TO BULETIN</h3>
+                <h1 class="heroHead md:w-[700px] sm:w-[500px] tablet:w-[500px] mini:w-[90vw] mobile:w-[95vw] micro:w-[97vw] text-center lg:text-[2.5vw] md:text-[31px] sm:text-[31px] tablet:text-[31px] mini:text-[30px] mobile:text-[28px] micro:text-[25px] lg:leading-[3vw] md:leading-[36px] sm:leading-[36px] tablet:leading-[36px] mini:leading-[35px] mobile:leading-[32px] micro:leading-[30px] font-semibold">Craft narratives that ignite <span class="text-[#DC2626]">inspiration <img src="inspiration.svg" class="w-[40px] inline-block"> </span>, <span class="text-[#DC2626]">knowledge <img src="know.svg" class="w-[40px] inline-block"> </span>, and <span class="text-[#DC2626]">entertainment <img src="entertainment.svg" class="w-[40px] inline-block"> </span></h1>
+            </div>
+            <div class="loader w-full flex justify-center items-center mt-[135px] md:mt-[110px] overflow-hidden">
+                <div class="rounded-full w-20 h-20 border-l-[5px] border-l-black border-l-solid border-r-[5px] border-r-black border-r-solid border-b-[5px] border-b-transparent border-b-solid border-t-[5px] border-t-black border-t-solid border-opacity-20"></div>
+            </div>
+            <div class="newsCards mt-14 mx-[auto] xl:columns-4 lg:columns-3 md:columns-3 sm:columns-2 tablet:columns-2 mini:columns-1 mobile:columns-1 micro:columns-1 xl:gap-x-[4vw] lg:gap-x-[5.5vw] md:gap-x-[3vw] sm:gap-x-[5vw] tablet:gap-x-[2vw] w-[max-content]"></div>
+        </main>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="script.js"></script>
+</body>
+</html>
